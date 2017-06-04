@@ -1,0 +1,17 @@
+div#logOutDiv{
+    position : absolute;
+    top : 0px;
+    right : 0px;
+}
+
+div.container-fluid{
+    position : absolute;
+    left : 10%;
+    right : 10%;
+}
+
+div.dropdown {
+    position : absolute;
+    top : 0px;
+    left : 0px;
+}

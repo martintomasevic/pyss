@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/static/sve.js"></script>
+        <link rel="stylesheet" href="/static/style/design.css">
+        <!--<script src="/static/calendar.js"></script>
+        <script src="/static/fullcalendar.js"></script>
+        <link rel="stylesheet" href="/static/style/calendar.css">
+        <link rel="stylesheet" href="/static/style/fullcalendar.css">-->
+    </head>
+    <body>
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Škola
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a href="#">Nemate nijednu školu</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Nađi svoju školu</a></li>
+        </ul>
+    </div>
+
+    <div>
+        <h3 id="username">{{email}}</h3>
+        <h3 id="firstname">first name: {{firstname}}</h3>
+        <h3 id="lastname">last name: {{lastname}}</h3>
+        <h3 id="date_joined"></h3>
+        <button id="showDataButton">Show me all my data</button>
+        <button id="showEmailInAlert">Show email in alert with ajax</button>
+        <div id="logOutDiv">
+            <button id="logOutButton" class="btn btn-default">Izlaz</button>
+        </div>
+    </div>
+
+    <div id="allData">Nema podataka</div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-2" style="background-color:white;"><i>Vrijeme</i></div>
+            <div class="col-xs-2" style="background-color:lavender;">Ponedjeljak</div>
+            <div class="col-xs-2" style="background-color:lavender;">Utorak</div>
+            <div class="col-xs-2" style="background-color:lavender;">Srijeda</div>
+            <div class="col-xs-2" style="background-color:lavender;">Četvrtak</div>
+            <div class="col-xs-2" style="background-color:lavender;">Petak</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2" style="background-color:pink;">08:00</div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2" style="background-color:pink;">10:00</div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2" style="background-color:pink;">12:00</div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2" style="background-color:pink;">14:00</div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2" style="background-color:pink;">16:00</div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2" style="background-color:pink;">18:00</div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+            <div class="col-xs-2" style="background-color:white;"></div>
+        </div>
+
+    </div>
+</div>
+
+    </body>
+</html>

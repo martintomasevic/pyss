@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="hr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+    <div class="container">
+        <h2>Unesite svoje podatke za pristup stranici</h2>
+        <form class="form-horizontal" action="/" method="post" id="loginform">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Email:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="email" placeholder="Unesite e-mail" name="email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="password">Lozinka:</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password" placeholder="Unesite lozinku" name="password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" id="loginsubmit" class="btn btn-default">Ulogiraj me</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <h2>Ako nemate račun, ovdje se registrirajte</h2>
+        <form class="form-horizontal" action="/register" method="post" id="registerform">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="emailregister">Email:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="emailregister" placeholder="Unesite e-mail" name="email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="passwordreg1">Lozinka:</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="passwordreg1" placeholder="Unesite lozinku" name="password">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="passwordreg2">Ponovljena lozinka:</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="passwordreg2" placeholder="Ponovno unesite lozinku" name="passwordrepeat">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="name">Ime:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="Unesite svoje ime" name="name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="lastname">Prezime:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="lastname" placeholder="Unesite svoje prezime" name="lastname">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" id="registersubmit" class="btn btn-default">Registriraj me</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% if error %}
+    <p class="error"><strong>Error:</strong> {{ error }}</p>
+    {% endif %}
+
+    </body>
+</html>
