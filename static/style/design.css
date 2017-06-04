@@ -1,17 +1,30 @@
-div#logOutDiv{
+#logOutDiv{
     position : absolute;
-    top : 0px;
-    right : 0px;
+    top : 0;
+    right : 0;
+    background-color: rgb(220, 40, 220) !important;
 }
 
-div.container-fluid{
+#logOutButton{
+    background-color: rgba(0, 40, 220, 0.9) !important;
+}
+
+.container-fluid{
     position : absolute;
     left : 10%;
     right : 10%;
+    display: none;
 }
 
-div.dropdown {
+.dropdown {
     position : absolute;
-    top : 0px;
-    left : 0px;
+    top : 0;
+    left : 0;
+}
+
+#details {
+    display: none;
+    position : absolute;
+    left : 0;
+    top: 0;
 }

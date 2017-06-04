@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
--- Poslužitelj:                  127.0.0.1
--- Server version:               10.1.22-MariaDB - mariadb.org binary distribution
+-- Host:                         127.0.0.1
+-- Server version:               10.1.23-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win64
--- HeidiSQL Verzija:             9.4.0.5125
+-- HeidiSQL Version:             9.4.0.5125
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `cities` (
   CONSTRAINT `FK_cities_countries` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table pyss.cities: ~1 rows (approximately)
+-- Dumping data for table pyss.cities: ~0 rows (approximately)
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
 INSERT INTO `cities` (`id`, `name`, `postal_code`, `country_id`) VALUES
 	(1, 'Zagreb', '10000', 1);
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `countries` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table pyss.countries: ~1 rows (approximately)
+-- Dumping data for table pyss.countries: ~0 rows (approximately)
 /*!40000 ALTER TABLE `countries` DISABLE KEYS */;
 INSERT INTO `countries` (`id`, `name`) VALUES
 	(1, 'Hrvatska');
@@ -99,43 +99,49 @@ INSERT INTO `events` (`id`, `date_begin`, `date_end`, `name`, `no_students`, `we
 -- Dumping structure for table pyss.event_holders
 DROP TABLE IF EXISTS `event_holders`;
 CREATE TABLE IF NOT EXISTS `event_holders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `event_id` int(11) NOT NULL DEFAULT '-1',
   `holder_id` int(11) NOT NULL DEFAULT '-1',
+  PRIMARY KEY (`id`),
   UNIQUE KEY `event_id_holder_id` (`event_id`,`holder_id`),
   KEY `FK__users` (`holder_id`),
   CONSTRAINT `FK__events` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
   CONSTRAINT `FK__users` FOREIGN KEY (`holder_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table pyss.event_holders: ~0 rows (approximately)
+-- Dumping data for table pyss.event_holders: ~1 rows (approximately)
 /*!40000 ALTER TABLE `event_holders` DISABLE KEYS */;
-INSERT INTO `event_holders` (`event_id`, `holder_id`) VALUES
-	(1, 15);
+INSERT INTO `event_holders` (`id`, `event_id`, `holder_id`) VALUES
+	(1, 1, 15);
 /*!40000 ALTER TABLE `event_holders` ENABLE KEYS */;
 
 -- Dumping structure for table pyss.event_users
 DROP TABLE IF EXISTS `event_users`;
 CREATE TABLE IF NOT EXISTS `event_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `event_id` int(11) NOT NULL DEFAULT '-1',
   `user_id` int(11) NOT NULL DEFAULT '-1',
+  PRIMARY KEY (`id`),
   UNIQUE KEY `event_id_user_id` (`event_id`,`user_id`),
   KEY `FK_users_events_users` (`user_id`),
   CONSTRAINT `FK_users_events_child_events` FOREIGN KEY (`event_id`) REFERENCES `child_events` (`id`),
   CONSTRAINT `FK_users_events_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table pyss.event_users: ~0 rows (approximately)
+-- Dumping data for table pyss.event_users: ~1 rows (approximately)
 /*!40000 ALTER TABLE `event_users` DISABLE KEYS */;
-INSERT INTO `event_users` (`event_id`, `user_id`) VALUES
-	(1, 15);
+INSERT INTO `event_users` (`id`, `event_id`, `user_id`) VALUES
+	(1, 1, 15);
 /*!40000 ALTER TABLE `event_users` ENABLE KEYS */;
 
 -- Dumping structure for table pyss.pending_user_evaluations
 DROP TABLE IF EXISTS `pending_user_evaluations`;
 CREATE TABLE IF NOT EXISTS `pending_user_evaluations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '-1',
   `school_id` int(11) NOT NULL DEFAULT '-1',
   `role_id` int(11) NOT NULL DEFAULT '-1',
+  PRIMARY KEY (`id`),
   KEY `FK_pending_user_evaluations_users` (`user_id`),
   KEY `FK_pending_user_evaluations_schools` (`school_id`),
   KEY `FK_pending_user_evaluations_roles` (`role_id`),
@@ -182,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `schools` (
   CONSTRAINT `FK_schools_cities` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table pyss.schools: ~1 rows (approximately)
+-- Dumping data for table pyss.schools: ~0 rows (approximately)
 /*!40000 ALTER TABLE `schools` DISABLE KEYS */;
 INSERT INTO `schools` (`id`, `oib`, `name`, `short_name`, `phone_number`, `street_name`, `street_number`, `city_id`) VALUES
 	(1, '12345', 'Osnova škola za debugging', 'OŠ DBG', '011234567', 'Ulična', 'bb', 1);
@@ -227,21 +233,23 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `phone_number`, `email`, `
 -- Dumping structure for table pyss.users_roles
 DROP TABLE IF EXISTS `users_roles`;
 CREATE TABLE IF NOT EXISTS `users_roles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '-1',
   `role_id` int(11) NOT NULL DEFAULT '-1',
   `school_id` int(11) NOT NULL DEFAULT '-1',
+  PRIMARY KEY (`id`),
   KEY `FK_users_roles_users` (`user_id`),
   KEY `FK_users_roles_roles` (`role_id`),
   KEY `FK_users_roles_schools` (`school_id`),
   CONSTRAINT `FK_users_roles_roles` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
   CONSTRAINT `FK_users_roles_schools` FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`),
   CONSTRAINT `FK_users_roles_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table pyss.users_roles: ~1 rows (approximately)
 /*!40000 ALTER TABLE `users_roles` DISABLE KEYS */;
-INSERT INTO `users_roles` (`user_id`, `role_id`, `school_id`) VALUES
-	(15, 1, 1);
+INSERT INTO `users_roles` (`id`, `user_id`, `role_id`, `school_id`) VALUES
+	(1, 15, 1, 1);
 /*!40000 ALTER TABLE `users_roles` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

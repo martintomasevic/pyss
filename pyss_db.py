@@ -27,7 +27,7 @@ class Cities(BaseModel):
     id = PrimaryKeyField()
     name = CharField(max_length=50)
     postal_code = CharField(max_length=15)
-    country_id =ForeignKeyField(Countries)
+    country = ForeignKeyField(Countries)
 
 class Users(BaseModel):
     id = PrimaryKeyField()
@@ -47,7 +47,7 @@ class Schools(BaseModel):
     phone_number = CharField(max_length=15)
     street_name = CharField(max_length=50)
     street_number = CharField(max_length=5)
-    city_id = ForeignKeyField(Cities)
+    city = ForeignKeyField(Cities)
 
 class Events(BaseModel):
     id = PrimaryKeyField()
@@ -62,34 +62,38 @@ class Events(BaseModel):
     evaluation = CharField(max_length=300)
     results = CharField(max_length=300)
     costs = CharField(max_length=300)
-    school_id = ForeignKeyField(Schools)
+    school = ForeignKeyField(Schools)
 
 class Child_Events(BaseModel):
     id = PrimaryKeyField()
     name = CharField(max_length=50)
     description = CharField(max_length=200)
     date_begin = DateTimeField()
-    date_eng = DateTimeField()
-    parent_event_id = ForeignKeyField(Events)
+    date_end = DateTimeField()
+    parent_event = ForeignKeyField(Events)
 
 class Event_Holders(BaseModel):
-    event_id = ForeignKeyField(Events)
-    holder_id = ForeignKeyField(Users)
+    id = PrimaryKeyField()
+    event = ForeignKeyField(Events)
+    holder = ForeignKeyField(Users)
 
 class Event_Users(BaseModel):
-    event_id = ForeignKeyField(Child_Events)
-    user_id = ForeignKeyField(Users)
+    id = PrimaryKeyField()
+    event = ForeignKeyField(Child_Events)
+    user = ForeignKeyField(Users)
 
 class Roles(BaseModel):
     id = PrimaryKeyField()
     name = CharField(max_length=50)
 
 class Pending_User_Evaluations(BaseModel):
-    user_id = ForeignKeyField(Users)
-    school_id = ForeignKeyField(Schools)
-    role_id = ForeignKeyField(Roles)
+    id = PrimaryKeyField()
+    user = ForeignKeyField(Users)
+    school = ForeignKeyField(Schools)
+    role = ForeignKeyField(Roles)
 
 class Users_Roles(BaseModel):
-    user_id = ForeignKeyField(Users)
-    school_id = ForeignKeyField(Schools)
-    role_id = ForeignKeyField(Roles)
+    id = PrimaryKeyField()
+    user = ForeignKeyField(Users)
+    school = ForeignKeyField(Schools)
+    role = ForeignKeyField(Roles)
