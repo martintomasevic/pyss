@@ -14,92 +14,211 @@
     </head>
     <body>
 
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Škola
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-            <li><a href="#">Nemate nijednu školu</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Nađi svoju školu</a></li>
-        </ul>
-    </div>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Škola
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="#">Nemate nijednu školu</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Nađi svoju školu</a></li>
+            </ul>
+        </div>
 
-    <div>
-        <h3 id="username">{{email}}</h3>
-        <h3 id="firstname">first name: {{firstname}}</h3>
-        <h3 id="lastname">last name: {{lastname}}</h3>
-        <h3 id="date_joined"></h3>
-        <button id="showDataButton">Show me all my data</button>
-        <button id="showEmailInAlert">Show email in alert with ajax</button>
+        <div id="test_data">
+            <h3 id="username">{{email}}</h3>
+            <h3 id="firstname">first name: {{firstname}}</h3>
+            <h3 id="lastname">last name: {{lastname}}</h3>
+            <h3 id="date_joined"></h3>
+            <button id="showDataButton">Show me all my data</button>
+            <button id="showEmailInAlert">Show email in alert with ajax</button>
+        </div>
+
         <div id="logOutDiv">
             <button id="logOutButton" class="btn btn-default">Izlaz</button>
         </div>
-    </div>
+        <div id="allData">Nema podataka</div>
 
-    <div id="allData">Nema podataka</div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-2" style="background-color:white;"><i>Vrijeme</i></div>
+                <div class="col-xs-2" style="background-color:lavender;">Ponedjeljak</div>
+                <div class="col-xs-2" style="background-color:lavender;">Utorak</div>
+                <div class="col-xs-2" style="background-color:lavender;">Srijeda</div>
+                <div class="col-xs-2" style="background-color:lavender;">Četvrtak</div>
+                <div class="col-xs-2" style="background-color:lavender;">Petak</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2" style="background-color:pink;">08:00</div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2" style="background-color:pink;">10:00</div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2" style="background-color:pink;">12:00</div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2" style="background-color:pink;">14:00</div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2" style="background-color:pink;">16:00</div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2" style="background-color:pink;">18:00</div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+                <div class="col-xs-2" style="background-color:white;"></div>
+            </div>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-2" style="background-color:white;"><i>Vrijeme</i></div>
-            <div class="col-xs-2" style="background-color:lavender;">Ponedjeljak</div>
-            <div class="col-xs-2" style="background-color:lavender;">Utorak</div>
-            <div class="col-xs-2" style="background-color:lavender;">Srijeda</div>
-            <div class="col-xs-2" style="background-color:lavender;">Četvrtak</div>
-            <div class="col-xs-2" style="background-color:lavender;">Petak</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-2" style="background-color:pink;">08:00</div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-        </div>
-        <div class="row">
-            <div class="col-xs-2" style="background-color:pink;">10:00</div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-        </div>
-        <div class="row">
-            <div class="col-xs-2" style="background-color:pink;">12:00</div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-        </div>
-        <div class="row">
-            <div class="col-xs-2" style="background-color:pink;">14:00</div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-        </div>
-        <div class="row">
-            <div class="col-xs-2" style="background-color:pink;">16:00</div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-        </div>
-        <div class="row">
-            <div class="col-xs-2" style="background-color:pink;">18:00</div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
-            <div class="col-xs-2" style="background-color:white;"></div>
         </div>
 
-    </div>
-</div>
-<table id="ostali"></table>
 
-<div id="details"></div>
+        <div class="modal fade" id="school_creator" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Upišite podatke za školu:</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container" id="school_creation">
+                        <form class="form-horizontal" action="/schools/create" method="post" id="school_create_form">
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="school_oib">*Unesite OIB škole:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="school_oib" placeholder="npr. 12345678910" name="school_oib">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="school_name">*Unesite puno ime škole:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="school_name" placeholder="npr. Osnova Škola Vatroslava Lisinskog" name="school_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="school_short_name">*Unesite skraćeno ime škole:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="school_short_name" placeholder="npr. OŠ V. Lisinskog" name="school_short_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="school_phone_number">*Unesite telefonski broj škole:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="school_phone_number" placeholder="npr. 011234567" name="school_phone_number">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="school_street_name">*Unesite ime ulice u kojoj se nalazi škola:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="school_street_name" placeholder="npr. Ulica Nikole Tesle" name="school_street_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="school_street_number">*Unesite kućni broj škole:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="school_street_number" placeholder="npr. 123" name="school_street_number">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="school_country">*Odaberite državu:</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="school_country" name="school_country">
+                                        <option>Croatia</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="school_city_and_postal_code">*Odaberite grad (i poštanski broj):</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="school_city_and_postal_code" name="school_city_and_postal_code">
+                                        <option>Zagreb</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <!--<div class="col-sm-2 pull-right">
+                                    <button type="button" id="school_creation_cancel" class="btn btn-default">Odustani</button>
+                                </div>-->
+                                <div class="col-sm-2 pull-right">
+                                    <button type="submit" id="school_creation_submit" class="btn btn-default">Kreiraj školu</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Odustani</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="school_finder">
+            <h2>Odaberite željenu školu i ulogu:</h2>
+            <form class="form-horizontal" action="/schools" method="post" id="school_finder_form">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="other_schools">Odaberite školu:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="other_schools" name="other_schools">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="available_roles">Odaberite školu:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="available_roles" name="available_roles">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2 pull-right">
+                    <button type="button" id="school_finder_cancel" class="btn btn-default">Odustani</button>
+                </div><div class="col-sm-3 pull-right">
+                    <button type="submit" id="school_finder_submit" class="btn btn-default">Zatraži pristup školi</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div id="school_view">
+            <label for="schools">Vaše škole:</label>
+            <ul id="schools">
+            </ul>
+            <label for="pending_schools">Škole za koje čekate potvrdu:</label>
+            <ul id="pending_schools">
+            </ul>
+            <button id="find_school" class="btn btn-default">Nađi školu</button>
+            <button id="create_school" class="btn btn-default" data-toggle="modal" data-target="#school_creator">Izradi novu školu</button>
+        </div>
+        <table id="ostali"></table>
+
+        <div id="details"></div>
     </body>
 </html>

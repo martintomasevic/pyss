@@ -33,9 +33,12 @@ def login():
     elif request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-        print("email NE postoji")
+        session["email"] = email
+        session["password"] = password
+        print("email nije u sessionu")
         return log_me_in(email, password)
     else:
+        print("email nije ni u obrascu ni u sessionu")
         return render_template('index.html')
 
 @app.route("/logout", methods=["GET"])
@@ -88,6 +91,162 @@ def obavi_check(email, password):
 def hashpassword(email, password):
     salt = email[:2].lower()
     return sha512(salt.encode('utf-8') + password.encode('utf-8')).hexdigest()
+
+
+@app.route("/schools", methods=["GET"])
+def return_schools():
+    if "email" not in session:
+        return jsonify({ "data" : {
+            "school" : "no school",
+        }, "status": {
+            "description" : "user not logged in"
+        }})
+
+    pending_schools = []
+    mode = request.args.get('mode')
+    if mode == "all":
+        schools = Schools.select()
+        print("no mode")
+    elif  mode == "user":
+        user = Users.get(email = session["email"])
+        schools = Schools.select().join(Users_Roles).where(Users_Roles.user == user)
+        pending_schools = Schools.select().join(Pending_User_Evaluations, on=(Schools.id == Pending_User_Evaluations.school)).where(Pending_User_Evaluations.user == user)
+        print(schools)
+        print("mode user")
+    elif mode == "other":
+        user = Users.get(email = session["email"])
+        schools = Schools.select().join(Users_Roles).where(Users_Roles.user != user)
+        print("mode other")
+
+    schools_field = []
+    for school in schools:
+        schools_field.append({"name" : school.name, "short_name" : school.short_name})
+
+    pending_schools_field = []
+    for school in pending_schools:
+        pending_schools_field.append({"name" : school.name, "short_name" : school.short_name})
+
+    return jsonify({ "schools" : schools_field, "pending_schools" : pending_schools_field})
+
+@app.route("/schools/apply", methods=["POST"])
+def apply_for_school():
+    if "email" not in session:
+        return jsonify({ "data" : {
+            "user" : "not logged in",
+            "school" : "not created",
+            "role" : "not created"
+        }, "status": {
+            "description" : "user not logged in"
+        }})
+
+    desired_role = request.form["available_roles"]
+    desired_school = request.form["other_schools"]
+    user = Users.get(email = session["email"])
+    role = Roles.get(name = desired_role)
+    school = Schools.get(name = desired_school)
+    try:
+        Pending_User_Evaluations.get(user = user, school = school, role = role)
+    except DoesNotExist:
+        Pending_User_Evaluations.create(user = user, school = school, role = role)
+
+    return jsonify("ok")
+
+
+
+@app.route("/schools/create", methods=["POST"])
+def create_school():
+    if "email" not in session:
+        return jsonify({ "data" : {
+            "user" : "not logged in",
+            "school" : "not created",
+            "role" : "not created"
+        }, "status": {
+            "description" : "user not logged in"
+        }})
+    user = Users.get(email = session["email"])
+    description = ""
+    oib = request.form["school_oib"]
+    if len(oib) <  5:
+        description += "oib shorter than 5 characters\n"
+    school_name = request.form["school_name"]
+    if len(school_name) < 5:
+        description += "school name shorter than 5 characters\n"
+    school_short_name = request.form["school_short_name"]
+    if len(school_short_name) < 1:
+        description += "school short name not provided"
+    school_phone_number = request.form["school_phone_number"]
+    if len(school_phone_number) < 5:
+        description += "school phone number not provided"
+    school_street_name = request.form["school_street_name"]
+    if len(school_street_name) < 5:
+        description += "school street name shorter than 5 characters\n"
+    school_street_number = request.form["school_street_number"]
+    if len(school_street_number) < 1:
+        description += "no street number provided"
+    school_city = request.form["school_city_and_postal_code"]
+    if len(school_city) < 1:
+        description += "no city provided"
+
+    if len(description) > 0:
+        return jsonify({ "data" : {
+            "user": user.email,
+            "school": "not created",
+            "role" : "not created"
+        }, "status": {
+            "description": description
+        }})
+
+    try:
+        Schools.get(oib = oib)
+        return jsonify({"data": {
+            "user": user.email,
+            "school": "not created",
+            "role": "not created"
+        }, "status": {
+            "description": "school already exists"
+        }})
+    except DoesNotExist:
+        pass
+
+    try:
+        city = Cities.get(name = school_city)
+    except DoesNotExist:
+        print("no such city")
+        return jsonify({"data": {
+            "user": user.email,
+            "school": "not created",
+            "role": "not created"
+        }, "status": {
+            "description": "cities doesn't exist"
+        }})
+
+    school = Schools.create(oib = oib, name = school_name, short_name = school_short_name, phone_number = school_phone_number, street_name = school_street_name, street_number = school_street_number, city = city)
+    admin_role = Roles.get(name="Administrator")
+    Users_Roles.create(user = user.id, school = school.id, role = admin_role.id)
+
+    return jsonify({ "data" : {
+        "user" : user.email,
+        "school" : school.name,
+        "role" : admin_role.name
+    }, "status" : {
+        "description": "school and role created"
+    }})
+
+@app.route("/roles", methods=["GET"])
+def getRoles():
+    if "email" not in session:
+        return jsonify({ "data" : {
+            "school" : "no school",
+        }, "status": {
+            "description" : "user not logged in"
+        }})
+
+    roles = Roles.select()
+    roles_field = []
+    for role in roles:
+        roles_field.append({"name" : role.name})
+
+    return jsonify(roles_field)
 
 @app.route("/allData", methods=["POST"])
 def allData():

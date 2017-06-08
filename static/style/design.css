@@ -2,11 +2,6 @@
     position : absolute;
     top : 0;
     right : 0;
-    background-color: rgb(220, 40, 220) !important;
-}
-
-#logOutButton{
-    background-color: rgba(0, 40, 220, 0.9) !important;
 }
 
 .container-fluid{
@@ -22,9 +17,62 @@
     left : 0;
 }
 
+#allData {
+    display : none;
+}
+
 #details {
     display: none;
     position : absolute;
     left : 0;
     top: 0;
+}
+
+/*
+#school_creation {
+    display : none;
+    position : absolute;
+    margin : auto;
+    top : 10%;
+    left : 25%;
+    width : 50%;
+    z-index : 1;
+    overflow : auto;
+    height : 75%;
+    background-color: rgba(255, 255, 255, 1) !important;
+}
+*/
+
+#school_creation {
+    width : 100%;
+    }
+
+#school_view {
+    position : absolute;
+    left : 0;
+    top : 10%;
+    margin-left : 10px;
+}
+
+.modal-body {
+    max-height = 500px;
+    overflow-y : auto;
+}
+#school_finder {
+    display : none;
+    position : absolute;
+    margin : auto;
+    top : 10%;
+    left : 25%;
+    width : 50%;
+    z-index : 1;
+    background-color: rgba(255, 255, 255, 1) !important;
+}
+
+.dropdown {
+    display : none;
+}
+
+#test_data{
+    display : none;
 }
